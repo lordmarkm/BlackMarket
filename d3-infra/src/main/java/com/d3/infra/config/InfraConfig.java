@@ -7,6 +7,8 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.ejb.HibernatePersistence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.d3.common.model.items.Image;
 import com.d3.common.model.items.UnidentifiedItem;
 import com.d3.common.model.player.Player;
+import com.d3.common.model.player.UnidBunch;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
@@ -38,6 +41,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableTransactionManagement
 public class InfraConfig {
 
+	static Logger log = LoggerFactory.getLogger(InfraConfig.class);
+	
     @Autowired
     private Environment env;
     
@@ -75,7 +80,7 @@ public class InfraConfig {
 
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource());
-        entityManagerFactory.setPackagesToScan(new String[] { "com.mtga.model.jpa" });
+        entityManagerFactory.setPackagesToScan(new String[] { "com.d3.common.model" });
         entityManagerFactory.setPersistenceProvider(new HibernatePersistence());
         entityManagerFactory.setJpaProperties(hibernateProperties());
         entityManagerFactory.afterPropertiesSet();
@@ -107,6 +112,7 @@ public class InfraConfig {
         	.addAnnotatedClass(Player.class)
         	.addAnnotatedClass(Image.class)
         	.addAnnotatedClass(UnidentifiedItem.class)
+        	.addAnnotatedClass(UnidBunch.class)
             .buildSessionFactory();
     }
 

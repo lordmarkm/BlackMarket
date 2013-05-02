@@ -10,7 +10,6 @@ import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.support.PersistenceExceptionTranslator;
@@ -23,10 +22,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.d3.common.constants.Profiles;
 import com.d3.common.model.items.Image;
 import com.d3.common.model.items.UnidentifiedItem;
 import com.d3.common.model.player.Player;
+import com.d3.common.model.player.UnidBunch;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
@@ -36,9 +35,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @PropertySource("classpath:test.properties")
-@EnableJpaRepositories(basePackages="com.mtga.infra.jpa")
+@EnableJpaRepositories(basePackages="com.d3.infra.repo")
 @EnableTransactionManagement
-@Profile(Profiles.TEST)
 public class TestConfig {
 
 	@Autowired
@@ -110,6 +108,7 @@ public class TestConfig {
 		.addAnnotatedClass(Player.class)
 		.addAnnotatedClass(Image.class)
 		.addAnnotatedClass(UnidentifiedItem.class)
+		.addAnnotatedClass(UnidBunch.class)
 		.buildSessionFactory();
 	}
 }

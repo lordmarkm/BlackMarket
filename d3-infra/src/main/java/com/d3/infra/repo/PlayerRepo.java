@@ -4,8 +4,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.d3.common.model.player.Player;
 
-public interface PlayerRepo extends PagingAndSortingRepository<Long, Player>{
+public interface PlayerRepo extends PagingAndSortingRepository<Player, Long>{
 
-	public Player findByBTag(String btag);
+	public Player findByBtag(String btag);
 
 }

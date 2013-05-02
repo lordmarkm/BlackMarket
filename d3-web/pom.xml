@@ -83,6 +83,12 @@
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 
+		<!-- HIBERNATE (FORM VALIDATION) -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
 		<!-- TEST -->
 
 		<!-- PROVIDED -->

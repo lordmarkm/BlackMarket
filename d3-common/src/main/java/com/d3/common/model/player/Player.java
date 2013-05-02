@@ -1,10 +1,16 @@
 package com.d3.common.model.player;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,6 +24,10 @@ public class Player implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	@Column
 	private String username;
 	
@@ -27,9 +37,12 @@ public class Player implements Serializable {
 	@Column
 	private String password;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Image image;
 
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<UnidBunch> unids;
+	
 	@Override
 	public String toString() {
 		return new ToStringCreator(this)
@@ -69,6 +82,23 @@ public class Player implements Serializable {
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<UnidBunch> getUnids() {
+		if(null == unids) unids = new ArrayList<UnidBunch>();
+		return unids;
+	}
+
+	public void setUnids(List<UnidBunch> unids) {
+		this.unids = unids;
 	}
 	
 }

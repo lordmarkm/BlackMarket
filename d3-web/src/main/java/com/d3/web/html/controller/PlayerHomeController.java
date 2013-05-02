@@ -16,7 +16,7 @@ public class PlayerHomeController {
 	
 	@RequestMapping("/{btag}")
 	public ModelAndView home(String btag) {
-		Player player = players.findByBTag(btag);
+		Player player = players.findByBtag(btag);
 		
 		return new ModelAndView("home")
 			.addObject("player", player);
