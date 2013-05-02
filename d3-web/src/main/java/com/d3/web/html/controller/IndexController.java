@@ -11,5 +11,5 @@ public interface IndexController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index();
-	
+
 }

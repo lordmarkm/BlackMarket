@@ -22,14 +22,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.d3.common.model.items.Image;
+import com.d3.common.model.items.UnidentifiedItem;
+import com.d3.common.model.player.Player;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mtga.model.jpa.JpaBinder;
-import com.mtga.model.jpa.JpaBinderPage;
-import com.mtga.model.jpa.JpaCard;
-import com.mtga.model.jpa.JpaCardCollection;
-import com.mtga.model.jpa.JpaExpansion;
-import com.mtga.model.jpa.JpaMtgaPlayer;
-import com.mtga.model.jpa.User;
 
 /**
  * JPA (MySQL, Hibernate) config
@@ -38,7 +34,7 @@ import com.mtga.model.jpa.User;
 
 @Configuration
 @PropertySource("classpath:dev.properties")
-@EnableJpaRepositories(basePackages="com.mtga.infra.jpa")
+@EnableJpaRepositories(basePackages="com.d3.infra.repo")
 @EnableTransactionManagement
 public class InfraConfig {
 
@@ -104,16 +100,13 @@ public class InfraConfig {
      * Hibernate-specific interface. {@link#entityManagerFactory} is part of JPA spec and should be preferred, 
      * but this (and the accompanying Hibernate Restrictions classes are too convenient not to use)
      */
-    @Bean
+    @SuppressWarnings("deprecation")
+	@Bean
     public SessionFactory sessionFactory() throws Exception {
         return new LocalSessionFactoryBuilder(dataSource())
-            .addAnnotatedClasses(JpaCard.class)
-            .addAnnotatedClass(JpaCardCollection.class)
-            .addAnnotatedClass(JpaBinderPage.class)
-            .addAnnotatedClass(JpaBinder.class)
-            .addAnnotatedClass(JpaExpansion.class)
-            .addAnnotatedClass(JpaMtgaPlayer.class)
-            .addAnnotatedClass(User.class)
+        	.addAnnotatedClass(Player.class)
+        	.addAnnotatedClass(Image.class)
+        	.addAnnotatedClass(UnidentifiedItem.class)
             .buildSessionFactory();
     }
 

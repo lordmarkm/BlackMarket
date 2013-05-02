@@ -17,6 +17,14 @@
 		<!-- PROJECT -->
 		<dependency>
 			<groupId>BlackMarket</groupId>
+			<artifactId>d3-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>BlackMarket</groupId>
+			<artifactId>d3-infra</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>BlackMarket</groupId>
 			<artifactId>d3-security</artifactId>
 		</dependency>
 
