@@ -6,15 +6,15 @@
         </encoder>
     </appender>
 
-    <logger name="com.mtga" level="DEBUG">
+    <logger name="com.d3" level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </logger>
 
-<!--
+    <!--  
     <logger name="org.springframework" level="debug">
         <appender-ref ref="STDOUT"/>
     </logger>
- -->
+-->
     <!-- 
     <root level="INFO">
        <appender-ref ref="STDOUT" />

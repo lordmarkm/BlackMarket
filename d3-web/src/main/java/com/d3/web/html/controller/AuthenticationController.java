@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.d3.web.dtos.RegForm;
 
 @Controller
-public class RegistrationController {
-
+public class AuthenticationController {
+	
 	@RequestMapping("/register")
 	public ModelAndView registrationPage() {
 		return new ModelAndView("register");

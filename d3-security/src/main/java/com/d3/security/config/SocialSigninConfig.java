@@ -1,5 +1,6 @@
 package com.d3.security.config;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
@@ -7,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.socialsignin.springsocial.security.signin.SpringSocialSecuritySignInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
@@ -26,13 +26,10 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
-@ComponentScan(basePackages = {SocialSigninConfig.SSS_BASE_PKG })
 @PropertySource({"classpath:social.properties", "classpath:facebook.properties"})
 public class SocialSigninConfig {
 
     static Logger log = LoggerFactory.getLogger(SocialSigninConfig.class);
-    
-    public static final String SSS_BASE_PKG = "org.socialsignin";
     
     @Autowired
     private Environment env;
@@ -43,10 +40,14 @@ public class SocialSigninConfig {
     @Autowired
     private SpringSocialSecuritySignInService signinService;
     
+    @PostConstruct
+    public void announce() {
+    	log.info("Social Signin config initialized.");
+    }
+
     @Bean(name="springSocialSecurityEntryPoint")
     public LoginUrlAuthenticationEntryPoint springSocialSecurityEntryPoint() {
         String loginUrl = env.getProperty("login.url");
-        log.debug("Using login url [{}]", loginUrl);
         return new LoginUrlAuthenticationEntryPoint(loginUrl);
     }
     
