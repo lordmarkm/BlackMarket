@@ -12,6 +12,11 @@ import com.d3.web.dtos.RegForm;
 @Controller
 public class AuthenticationController {
 	
+	@RequestMapping("/login")
+	public ModelAndView loginPage() {
+		return new ModelAndView("login");
+	}
+	
 	@RequestMapping("/register")
 	public ModelAndView registrationPage() {
 		return new ModelAndView("register");

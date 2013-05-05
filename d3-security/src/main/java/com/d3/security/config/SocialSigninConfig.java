@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.socialsignin.springsocial.security.signin.SpringSocialSecuritySignInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
@@ -26,6 +27,7 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
+@ComponentScan(basePackages={"org.socialsignin.springsocial.security", "org.socialsignin.provider"})
 @PropertySource({"classpath:social.properties", "classpath:facebook.properties"})
 public class SocialSigninConfig {
 

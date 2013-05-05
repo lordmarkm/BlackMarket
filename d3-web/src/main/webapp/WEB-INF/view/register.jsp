@@ -12,15 +12,17 @@
 </head>
 
 <body>
-  <div id="wrap">
-    <div class="container">
-    
-      <form class="login" id="signin-facebook" action="<@spring.url '/signin/facebook' />" method="POST">
-        <input type="submit" />
-      </form>
-      
-    </div>
-  </div>
+<!--  
+  <form method = "post">
+    <@spring.bind "form" />
+    <input type="text" name="username" />
+    <input type="text" name="btag" />
+    <input type="password" name="password" />
+    <#list spring.status.errorMessages as error> 
+      <b>${error }</b><br />
+    </#list>
+  </form>
+  -->
 </body>
 
 </html>
